@@ -51,4 +51,9 @@
 			}
 		}
 	});
+
+	$(document).on("click", ".toggle", function(){
+		$(this).parent().parent().addClass("completed");
+		console.log($(this).parent().find("label").html());
+	});
 })(window);
