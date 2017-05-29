@@ -36,10 +36,9 @@ public class TodoController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Todo create(@RequestParam(value="todo") String str){
-		System.out.println(str);
 		Todo todo = new Todo();
 		todo.setTodo(str);
-		service.create(todo);
-		return todo;
+		int id = service.create(todo);
+		return service.findById(id);
 	}
 }

@@ -34,9 +34,34 @@
 					data:{
 						"todo" : text
 					},
-					suceess:function(){
-						alert("성공"+text);
+					statusCode:{
+						201:function(data){
+							var tag = "<li>"
+							tag += "<div class='view'>";
+							tag += "<input class='toggle' type='checkbox'>";
+							tag += "<label>"+data.todo+"</label>";
+							tag += "<button class='destroy'></button>";
+							tag += "</div>";
+							tag += "<input class='edit' value='Create a TodoMVC template'>";
+							tag += "</li>";
+							$(".todo-list").prepend(tag);
+						}
 					}
+					/*
+					suceess:function(data){
+						alert("성공"+data);
+						var tag = "<li>"
+						tag += "<div class='view'>";
+						tag += "<input class='toggle' type='checkbox'>";
+						tag += "<label>"+data.todo+"</label>";
+						tag += "<button class='destroy'></button>";
+						tag += "</div>";
+						tag += "<input class='edit' value='Create a TodoMVC template'>";
+						tag += "</li>";
+						$(".todo-list").prepend(tag);
+					}
+					*/
+					
 				});					
 			}
 		}
