@@ -33,8 +33,11 @@ public class TodoController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	Todo create(@RequestParam(value="todo") String todo){
-		System.out.println(todo);
-		return null;
+	Todo create(@RequestParam(value="todo") String str){
+		System.out.println(str);
+		Todo todo = new Todo();
+		todo.setTodo(str);
+		service.create(todo);
+		return todo;
 	}
 }
