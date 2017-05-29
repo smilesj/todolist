@@ -1,6 +1,7 @@
 (function (window) {
 	'use strict';
 
+	// Your starting point. Enjoy the ride!
 	$.ajax({
 		method:'GET',
 		url:"/api/todos",
@@ -23,7 +24,6 @@
 		}
 	});
 	
-	// Your starting point. Enjoy the ride!
 	$(".new-todo").keydown(function(key){
 		if(key.keyCode == 13){
 			var text = $(this).val();
@@ -47,21 +47,6 @@
 							$(".todo-list").prepend(tag);
 						}
 					}
-					/*
-					suceess:function(data){
-						alert("성공"+data);
-						var tag = "<li>"
-						tag += "<div class='view'>";
-						tag += "<input class='toggle' type='checkbox'>";
-						tag += "<label>"+data.todo+"</label>";
-						tag += "<button class='destroy'></button>";
-						tag += "</div>";
-						tag += "<input class='edit' value='Create a TodoMVC template'>";
-						tag += "</li>";
-						$(".todo-list").prepend(tag);
-					}
-					*/
-					
 				});					
 			}
 		}

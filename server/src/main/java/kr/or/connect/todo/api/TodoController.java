@@ -28,7 +28,6 @@ public class TodoController {
 	
 	@GetMapping
 	public List<Todo> readList(Model model){
-		//service.findAll()
 		model.addAttribute("list", service.findAll());
 		return service.findAll();
 	}

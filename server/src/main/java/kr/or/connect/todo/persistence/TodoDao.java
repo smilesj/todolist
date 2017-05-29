@@ -26,13 +26,7 @@ public class TodoDao {
 				.usingGeneratedKeyColumns("id")
 				.usingColumns("todo");
 	}
-	
-	public Integer insert(Todo todo){
-		SqlParameterSource params = new BeanPropertySqlParameterSource(todo);
-
-		return insertAction.executeAndReturnKey(params).intValue();
-	}
-	
+		
 	public List<Todo> selectAll(){
 		return jdbc.query(TodoSqls.SELECT_ALL, new BeanPropertyRowMapper<Todo>(Todo.class));
 	}
@@ -40,5 +34,10 @@ public class TodoDao {
 	public Todo selectOne(Integer id){
 		SqlParameterSource params = new MapSqlParameterSource("id", id);
 		return jdbc.queryForObject(TodoSqls.SELECT_BY_ID, params, new BeanPropertyRowMapper<Todo>(Todo.class));
+	}
+	
+	public Integer insert(Todo todo){
+		SqlParameterSource params = new BeanPropertySqlParameterSource(todo);
+		return insertAction.executeAndReturnKey(params).intValue();
 	}
 }

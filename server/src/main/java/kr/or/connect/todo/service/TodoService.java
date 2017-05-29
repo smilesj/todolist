@@ -18,9 +18,6 @@ public class TodoService {
 	@Resource(name="todoDao")
 	private TodoDao dao;
 	
-	private ConcurrentMap<Integer, Todo> repo = new ConcurrentHashMap<>();
-	private AtomicInteger maxId = new AtomicInteger(0);
-	
 	public List<Todo> findAll(){
 		return dao.selectAll();
 	}
