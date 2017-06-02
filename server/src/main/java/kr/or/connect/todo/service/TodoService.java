@@ -29,4 +29,8 @@ public class TodoService {
 	public Integer create(Todo todo){
 		return dao.insert(todo);
 	}
+	
+	public void modifyCompleted(Integer id){
+		dao.updateCompleted(id);
+	}
 }

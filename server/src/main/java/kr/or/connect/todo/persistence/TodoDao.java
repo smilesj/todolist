@@ -1,6 +1,8 @@
 package kr.or.connect.todo.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -39,5 +41,11 @@ public class TodoDao {
 	public Integer insert(Todo todo){
 		SqlParameterSource params = new BeanPropertySqlParameterSource(todo);
 		return insertAction.executeAndReturnKey(params).intValue();
+	}
+	
+	public void updateCompleted(Integer id){
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("id", id);
+		jdbc.update(TodoSqls.UPDATE_COMPLETED, param);
 	}
 }
