@@ -5,7 +5,7 @@
 	$.ajax({
 		method:'GET',
 		url:"/api/todos",
-		success:function(data){				
+		success:function(data){	
 			var tag = "";
 			$.each(data, function(index, value){
 				if(value.completed == 1)
@@ -24,9 +24,19 @@
 				tag += "<input class='edit' value='Create a TodoMVC template'>";
 				tag += "</li>";
 			});
-			$(".todo-list").append(tag);		
+			$(".todo-list").append(tag);
+			getCount();
 		}
 	});
+//	$.ajax({
+//		method:'GET',
+//		url:"/api/todos/count",
+//		success:function(data){
+//			console.log(data);
+//			$(".todo-count").find("strong").html(data);
+//		}
+//	});
+//	getCount();
 	
 	$(".new-todo").keydown(function(key){
 		if(key.keyCode == 13){
@@ -50,6 +60,7 @@
 							tag += "<input class='edit' value='Create a TodoMVC template'>";
 							tag += "</li>";
 							$(".todo-list").prepend(tag);
+							getCount();
 						}
 					}
 				});					
@@ -67,6 +78,7 @@
 				204:function(){
 					element.parent().parent().addClass("completed");
 					element.prop("checked", true);
+					getCount();
 				}
 			}
 		});
@@ -81,8 +93,19 @@
 			statusCode:{
 				204:function(){
 					element.remove();
+					getCount();
 				}
 			}
 		});
 	});
 })(window);
+
+function getCount(){
+	$.ajax({
+		method:'GET',
+		url:"/api/todos/count",
+		success:function(data){
+			$(".todo-count").find("strong").html(data);
+		}
+	});
+}

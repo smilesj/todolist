@@ -24,7 +24,7 @@ public class TodoService {
 	
 	public Todo findById(Integer id){
 		return dao.selectOne(id);
-	}
+	}	
 	
 	public Integer create(Todo todo){
 		return dao.insert(todo);
@@ -36,5 +36,9 @@ public class TodoService {
 	
 	public void remove(Integer id){
 		dao.delete(id);
+	}
+	
+	public Integer countNotCompleted() {
+		return dao.countNotCompleted();
 	}
 }

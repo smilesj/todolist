@@ -54,4 +54,8 @@ public class TodoDao {
 		param.put("id", id);
 		jdbc.update(TodoSqls.DELETE_BY_ID, param);
 	}
+
+	public Integer countNotCompleted() {
+		return jdbc.queryForObject(TodoSqls.COUNT_NOT_COMPLETED,(SqlParameterSource)null, Integer.class);
+	}
 }

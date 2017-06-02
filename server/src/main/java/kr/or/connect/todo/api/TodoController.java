@@ -35,6 +35,11 @@ public class TodoController {
 		return service.findAll();
 	}
 	
+	@GetMapping("/count")
+	public Integer readNotCompleted(Model model){
+		return service.countNotCompleted();
+	}
+	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Todo create(@RequestParam(value="todo") String str){
