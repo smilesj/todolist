@@ -66,6 +66,8 @@
 	});
 	$('.filters li a').click(function(event){
 	    event.preventDefault();
+	    $('.filters li a').removeClass("selected");
+	    $(this).addClass("selected");
 	    var filter = $(this).html().toLowerCase();
 	    getReadAll("/"+filter);
 	});
