@@ -28,15 +28,6 @@
 			getCount();
 		}
 	});
-//	$.ajax({
-//		method:'GET',
-//		url:"/api/todos/count",
-//		success:function(data){
-//			console.log(data);
-//			$(".todo-count").find("strong").html(data);
-//		}
-//	});
-//	getCount();
 	
 	$(".new-todo").keydown(function(key){
 		if(key.keyCode == 13){
