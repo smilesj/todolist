@@ -48,4 +48,10 @@ public class TodoDao {
 		param.put("id", id);
 		jdbc.update(TodoSqls.UPDATE_COMPLETED, param);
 	}
+	
+	public void delete(Integer id){
+		Map<String, Object> param = new HashMap<String, Object>();
+		param.put("id", id);
+		jdbc.update(TodoSqls.DELETE_BY_ID, param);
+	}
 }

@@ -71,4 +71,18 @@
 			}
 		});
 	});
+	
+	$(document).on("click", ".destroy", function(){
+		var id = $(this).parent().find('.todoid').val();
+		var element = $(this).parent().parent();
+		$.ajax({
+			method:'DELETE',
+			url:"/api/todos/"+id,
+			statusCode:{
+				204:function(){
+					element.remove();
+				}
+			}
+		});
+	});
 })(window);

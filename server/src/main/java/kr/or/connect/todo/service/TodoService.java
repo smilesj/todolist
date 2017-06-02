@@ -33,4 +33,8 @@ public class TodoService {
 	public void modifyCompleted(Integer id){
 		dao.updateCompleted(id);
 	}
+	
+	public void remove(Integer id){
+		dao.delete(id);
+	}
 }
