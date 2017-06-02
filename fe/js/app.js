@@ -14,7 +14,10 @@
 					tag += "<li>"
 				tag += "<div class='view'>";
 				tag += "<input type='hidden' class='todoid' value='"+value.id+"'/>";
-				tag += "<input class='toggle' type='checkbox'>";
+				if(value.completed == 1)
+					tag += "<input class='toggle' type='checkbox' checked>"
+				else
+					tag += "<input class='toggle' type='checkbox'>";
 				tag += "<label>"+value.todo+"</label>";
 				tag += "<button class='destroy'></button>";
 				tag += "</div>";
@@ -55,9 +58,17 @@
 	});
 
 	$(document).on("click", ".toggle", function(){
-		$(this).parent().parent().addClass("completed");
 		var id = $(this).parent().find('.todoid').val();
-		console.log(id+" / " + $(this).parent().find("label").html());
-		
+		var element = $(this);
+		$.ajax({
+			method:'PUT',
+			url:"/api/todos/"+id,
+			statusCode:{
+				204:function(){
+					element.parent().parent().addClass("completed");
+					element.prop("checked", true);
+				}
+			}
+		});
 	});
 })(window);
