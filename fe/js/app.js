@@ -53,23 +53,26 @@
 	$(document).on("click", ".destroy", function(){
 		var id = $(this).parent().find('.todoid').val();
 		var element = $(this).parent().parent();
-		$.ajax({
-			method:'DELETE',
-			url:"/api/todos/"+id,
-			statusCode:{
-				204:function(){
-					element.remove();
-					getCount();
-				}
-			}
-		});
+		deleteTodo(element, id);
 	});
+	
 	$('.filters li a').click(function(event){
 	    event.preventDefault();
 	    $('.filters li a').removeClass("selected");
 	    $(this).addClass("selected");
 	    var filter = $(this).html().toLowerCase();
 	    getReadAll("/"+filter);
+	});
+	
+	$(document).on("click", ".clear-completed", function(){
+		$(".todo-list>li").each(function(index){
+			if($(this).hasClass("completed")){
+				var element = $(this);
+				var id = $(this).find(".todoid").val();
+				deleteTodo(element, id);
+			}
+		});
+		
 	});
 })(window);
 
@@ -112,6 +115,19 @@ function getCount(){
 		url:"/api/todos/count",
 		success:function(data){
 			$(".todo-count").find("strong").html(data);
+		}
+	});
+}
+
+function deleteTodo(element, id){
+	$.ajax({
+		method:'DELETE',
+		url:"/api/todos/"+id,
+		statusCode:{
+			204:function(){
+				element.remove();
+				getCount();
+			}
 		}
 	});
 }
