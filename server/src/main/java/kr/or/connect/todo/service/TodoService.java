@@ -24,7 +24,15 @@ public class TodoService {
 	
 	public Todo findById(Integer id){
 		return dao.selectOne(id);
-	}	
+	}
+	
+	public List<Todo> findActive(){
+		return dao.selectActive();
+	}
+	
+	public List<Todo> findCompleted(){
+		return dao.selectCompleted();
+	}
 	
 	public Integer create(Todo todo){
 		return dao.insert(todo);

@@ -38,6 +38,14 @@ public class TodoDao {
 		return jdbc.queryForObject(TodoSqls.SELECT_BY_ID, params, new BeanPropertyRowMapper<Todo>(Todo.class));
 	}
 	
+	public List<Todo> selectActive(){
+		return jdbc.query(TodoSqls.SELECT_ACTIVE, new BeanPropertyRowMapper<Todo>(Todo.class));
+	}
+	
+	public List<Todo> selectCompleted(){
+		return jdbc.query(TodoSqls.SELECT_COMPLETED, new BeanPropertyRowMapper<Todo>(Todo.class));
+	}
+	
 	public Integer insert(Todo todo){
 		SqlParameterSource params = new BeanPropertySqlParameterSource(todo);
 		return insertAction.executeAndReturnKey(params).intValue();

@@ -29,10 +29,20 @@ public class TodoController {
 		this.service = service;
 	}
 	
-	@GetMapping
+	@GetMapping()
 	public List<Todo> readList(Model model){
 		model.addAttribute("list", service.findAll());
 		return service.findAll();
+	}
+	
+	@GetMapping(value="/active")
+	public List<Todo> readActiveList(){
+		return service.findActive();
+	}
+	
+	@GetMapping(value="/completed")
+	public List<Todo> readCompletedList(){
+		return service.findCompleted();
 	}
 	
 	@GetMapping("/count")
