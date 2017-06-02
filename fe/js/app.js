@@ -13,6 +13,7 @@
 				else
 					tag += "<li>"
 				tag += "<div class='view'>";
+				tag += "<input type='hidden' class='todoid' value='"+value.id+"'/>";
 				tag += "<input class='toggle' type='checkbox'>";
 				tag += "<label>"+value.todo+"</label>";
 				tag += "<button class='destroy'></button>";
@@ -38,6 +39,7 @@
 						201:function(data){
 							var tag = "<li>"
 							tag += "<div class='view'>";
+							tag += "<input type='hidden' class='todoid' value='"+data.id+"'/>";
 							tag += "<input class='toggle' type='checkbox'>";
 							tag += "<label>"+data.todo+"</label>";
 							tag += "<button class='destroy'></button>";
@@ -54,6 +56,8 @@
 
 	$(document).on("click", ".toggle", function(){
 		$(this).parent().parent().addClass("completed");
-		console.log($(this).parent().find("label").html());
+		var id = $(this).parent().find('.todoid').val();
+		console.log(id+" / " + $(this).parent().find("label").html());
+		
 	});
 })(window);
