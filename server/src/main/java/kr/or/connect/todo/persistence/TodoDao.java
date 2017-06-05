@@ -20,7 +20,6 @@ public class TodoDao {
 	private NamedParameterJdbcTemplate jdbc;
 	private SimpleJdbcInsert insertAction;
 	
-	@Autowired
 	public TodoDao(DataSource dataSource) {
 		this.jdbc = new NamedParameterJdbcTemplate(dataSource);
 		this.insertAction = new SimpleJdbcInsert(dataSource)

@@ -15,9 +15,12 @@ import kr.or.connect.todo.persistence.TodoDao;
 @Service
 public class TodoService {
 	
-	@Resource(name="todoDao")
 	private TodoDao dao;
 	
+	public TodoService(TodoDao dao) {
+		this.dao = dao;
+	}
+
 	public List<Todo> findAll(){
 		return dao.selectAll();
 	}

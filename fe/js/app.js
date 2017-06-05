@@ -7,6 +7,7 @@
 	$(".new-todo").keydown(function(key){
 		if(key.keyCode == 13){
 			var text = $(this).val();
+			var element = $(this);
 			if(text != ''){
 				$.ajax({
 					method:'POST',
@@ -27,6 +28,7 @@
 							tag += "</li>";
 							$(".todo-list").prepend(tag);
 							getCount();
+							element.val('');
 						}
 					}
 				});					
